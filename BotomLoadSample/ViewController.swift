@@ -85,7 +85,7 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
             timeCount += 1
         }else{
             sampledata.removeLast()
-            for a in sampledata.last!..<sampledata.last! + 10{
+            for a in sampledata.last!..<sampledata.last! + 11{
                 sampledata.append(a)
             }
             timer.invalidate()
