@@ -20,9 +20,4 @@ class LoaddingTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
     }
-    
-    func setCell(){
-//        IndicatoreView.startAnimating()
-//        IndicatoreView.stopAnimating()
-    }
 }

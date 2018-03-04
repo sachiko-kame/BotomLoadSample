@@ -16,6 +16,8 @@
 		8403811B204C1EEC007C7CE9 /* BotomLoadSampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403811A204C1EEC007C7CE9 /* BotomLoadSampleUITests.swift */; };
 		8403812B204C20A9007C7CE9 /* LoaddingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84038129204C20A9007C7CE9 /* LoaddingTableViewCell.swift */; };
 		8403812C204C20A9007C7CE9 /* LoaddingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8403812A204C20A9007C7CE9 /* LoaddingTableViewCell.xib */; };
+		8403812F204C21C6007C7CE9 /* NSObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403812E204C21C6007C7CE9 /* NSObjectExtension.swift */; };
+		84038133204C225C007C7CE9 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84038132204C225C007C7CE9 /* UITableViewExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		8403811C204C1EEC007C7CE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84038129204C20A9007C7CE9 /* LoaddingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaddingTableViewCell.swift; sourceTree = "<group>"; };
 		8403812A204C20A9007C7CE9 /* LoaddingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoaddingTableViewCell.xib; sourceTree = "<group>"; };
+		8403812E204C21C6007C7CE9 /* NSObjectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObjectExtension.swift; sourceTree = "<group>"; };
+		84038132204C225C007C7CE9 /* UITableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,7 @@
 				840380FE204C1EEC007C7CE9 /* Main.storyboard */,
 				84038101204C1EEC007C7CE9 /* Assets.xcassets */,
 				84038128204C2069007C7CE9 /* Parts */,
+				8403812D204C21A4007C7CE9 /* Extension */,
 				84038103204C1EEC007C7CE9 /* LaunchScreen.storyboard */,
 				84038106204C1EEC007C7CE9 /* Info.plist */,
 			);
@@ -137,6 +142,15 @@
 				8403812A204C20A9007C7CE9 /* LoaddingTableViewCell.xib */,
 			);
 			path = Parts;
+			sourceTree = "<group>";
+		};
+		8403812D204C21A4007C7CE9 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				8403812E204C21C6007C7CE9 /* NSObjectExtension.swift */,
+				84038132204C225C007C7CE9 /* UITableViewExtension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,8 +289,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				840380FD204C1EEC007C7CE9 /* ViewController.swift in Sources */,
+				84038133204C225C007C7CE9 /* UITableViewExtension.swift in Sources */,
 				840380FB204C1EEC007C7CE9 /* AppDelegate.swift in Sources */,
 				8403812B204C20A9007C7CE9 /* LoaddingTableViewCell.swift in Sources */,
+				8403812F204C21C6007C7CE9 /* NSObjectExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
