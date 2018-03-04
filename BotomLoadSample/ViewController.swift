@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var sampledata = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17"]
+    var sampledata = [1,2,3,4,5,6,7,8,9,10]
     
     var loadfrag:Bool = false
     var timeCount:Int = 0
@@ -54,7 +54,7 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
             return cell
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath as IndexPath)
-            cell.textLabel?.text = sampledata[indexPath.row]
+            cell.textLabel?.text = "\(sampledata[indexPath.row])"
             return cell
         }
     }
@@ -72,7 +72,7 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
     
     func IndicatoreViewshow(){
         loadfrag = true
-        sampledata.append("")
+        sampledata.append(0)
         self.table.reloadData()
     
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.onUpdate(timer:)), userInfo: nil, repeats: true)
@@ -81,13 +81,13 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
     }
     
     @objc func onUpdate(timer : Timer){
-        sampledata.removeLast()
-        for a in 1..<10{
-            sampledata.append("\(a)")
-        }
         if(timeCount < 2){
             timeCount += 1
         }else{
+            sampledata.removeLast()
+            for a in sampledata.last!..<sampledata.last! + 10{
+                sampledata.append(a)
+            }
             timer.invalidate()
             timeCount = 0
             loadfrag = false
