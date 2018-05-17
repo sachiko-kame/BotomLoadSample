@@ -10,15 +10,10 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var sampledata = [1,2,3,4,5,6,7,8,9,10]
-    
-    var loadfrag:Bool = false
-    var timeCount:Int = 0
-    
+    var sampledatas = [1,2,3,4,5,6,7,8,9,10]
     let table = UITableView()
     let ViewFrame = UIScreen.main.bounds
-    
-    var timer = Timer()
+    var isaddload:Bool = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +21,10 @@ class ViewController: UIViewController {
         
         self.table.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
         self.table.register(cellType: LoaddingTableViewCell.self)
+        let footerCell: UITableViewCell = table.dequeueReusableCell(withIdentifier: "LoaddingTableViewCell")!
+        (footerCell as! LoaddingTableViewCell).startAnimationg()
+        let footerView: UIView = footerCell.contentView
+        table.tableFooterView = footerView
 
         table.frame = ViewFrame
         self.view.addSubview(table)
@@ -43,54 +42,37 @@ class ViewController: UIViewController {
 
 extension ViewController:UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return sampledata.count
+       return sampledatas.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        if(indexPath.row == sampledata.count - 1 && loadfrag == true){
-            let cell = tableView.dequeueReusableCell(with: LoaddingTableViewCell.self, for: indexPath)
-            cell.IndicatoreView.startAnimating()
-            return cell
-        }else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath as IndexPath)
-            cell.textLabel?.text = "\(sampledata[indexPath.row])"
-            return cell
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath as IndexPath)
+        cell.textLabel?.text = "\(sampledatas[indexPath.row])"
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
-        return 100
+        return 130
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-        if self.table.contentOffset.y + self.table.frame.size.height > self.table.contentSize.height && self.table.isDragging && loadfrag == false {
-            self.IndicatoreViewshow()
+        if (self.table.contentOffset.y + self.table.frame.size.height > self.table.contentSize.height && self.table.isDragging && isaddload == true){
+            self.isaddload = false
+            self.addData()
         }
     }
     
-    func IndicatoreViewshow(){
-        loadfrag = true
-        sampledata.append(0)
-        self.table.reloadData()
-    
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.onUpdate(timer:)), userInfo: nil, repeats: true)
-        
-        
-    }
-    
-    @objc func onUpdate(timer : Timer){
-        if(timeCount < 2){
-            timeCount += 1
-        }else{
-            sampledata.removeLast()
-            for a in sampledata.last!..<sampledata.last! + 11{
-                sampledata.append(a)
+    func addData(){
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            for count in 0..<10{
+                self.sampledatas.append(count)
             }
-            timer.invalidate()
-            timeCount = 0
-            loadfrag = false
+            if(self.sampledatas.count > 50){
+                self.isaddload = false
+                self.table.tableFooterView = UIView()
+            }else{
+                self.isaddload = true
+            }
             self.table.reloadData()
         }
     }
